@@ -12,8 +12,7 @@ public class ResizableArraySet implements SetInterface {
      * The empty constructor creates the array with a default capacity of 10
      */
     public ResizableArraySet() {
-        array = new Point[10];
-	numEntries = 0;
+        ResizableArraySet(10);
     }
     /**
      * public ResizableArraySet(int capacity)
