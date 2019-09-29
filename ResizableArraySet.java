@@ -5,69 +5,69 @@ import java.util.Arrays;
  * @author rabesj
  */
 public class ResizableArraySet implements SetInterface {
-	private Point[] array;
-	private int numEntries;
-	/**
-	 * public ResizableArraySet()
-	 * The empty constructor creates the array with a default capacity of 10
-	 */
-	public ResizableArraySet() {
-		array = new Point[10];
-		numEntries = 0;
+    private Point[] array;
+    private int numEntries;
+    /**
+     * public ResizableArraySet()
+     * The empty constructor creates the array with a default capacity of 10
+     */
+    public ResizableArraySet() {
+        array = new Point[10];
+	numEntries = 0;
+    }
+    /**
+     * public ResizableArraySet(int capacity)
+     * This constructor creates the array with the user-specified capacity
+     * @param capacity the integer value of the array's initial capacity
+     */
+    public ResizableArraySet(int capacity) {
+	array = new Point[capacity];
+	numEntries = 0;
+    }
+    /**
+     * public int getSize()
+     * This method calculates the number of entries in the Set
+     * @return the integer value of the number of entries in the Set
+     */
+    @Override
+    public int getSize() {
+	return numEntries;
+    }
+    /**
+     * public boolean isEmpty()
+     * This method determines whether or not the Set is empty
+     * @return true if the Set is empty, false otherwise
+     */
+    @Override
+    public boolean isEmpty() {
+	return numEntries == 0;
+    }
+    /**
+     * public boolean add(Point newValue)
+     * This method attempts to add a new Point to the Set
+     * @param newValue the reference value of the Point object to be added to the Set
+     * @return true if the object is succesfully added, false otherwise
+     */
+    @Override
+    public boolean add(Point newValue) {
+	if(numEntries < array.length) {
+            array[numEntries] = newValue;
+	    numEntries++;
+	    return true;
 	}
-	/**
-	 * public ResizableArraySet(int capacity)
-	 * This constructor creates the array with the user-specified capacity
-	 * @param capacity the integer value of the array's initial capacity
-	 */
-	public ResizableArraySet(int capacity) {
-		array = new Point[capacity];
-		numEntries = 0;
+	else if(numEntries >= array.length) {
+	    Point[] copy = Arrays.copyOf(array, array.length * 2);
+	    array = copy;
+	    array[numEntries] = newValue;
+	    numEntries++;
+	    return true;
 	}
-	/**
-	 * public int getSize()
-	 * This method calculates the number of entries in the Set
-	 * @return the integer value of the number of entries in the Set
-	 */
-	@Override
-	public int getSize() {
-		return numEntries;
-	}
-	/**
-	 * public boolean isEmpty()
-	 * This method determines whether or not the Set is empty
-	 * @return true if the Set is empty, false otherwise
-	 */
-	@Override
-	public boolean isEmpty() {
-		return numEntries == 0;
-	}
-	/**
-	 * public boolean add(Point newValue)
-	 * This method attempts to add a new Point to the Set
-	 * @param newValue the reference value of the Point object to be added to the Set
-	 * @return true if the object is succesfully added, false otherwise
-	 */
-	@Override
-	public boolean add(Point newValue) {
-		if(numEntries < array.length) {
-			array[numEntries] = newValue;
-			numEntries++;
-			return true;
-		}
-		else if(numEntries >= array.length) {
-			Point[] copy = Arrays.copyOf(array, array.length * 2);
-			array = copy;
-			array[numEntries] = newValue;
-			numEntries++;
-			return true;
-		}
-		return false;
-	}
-	/**
-	 * public boolean remove(Point aValue)
-	 * This method attempts to remove a specific Point object from the Set
-	 * @param aValue the Point object to be removed from the Set
+	return false;
+    }
+    /**
+     * public boolean remove(Point aValue)
+     * This method attempts to remove a specific Point object from the Set
+     * @param aValue the Point object to be removed from the Set
 	 * @return true if the object is found and removed, false otherwise
 	 */
 	@Override
