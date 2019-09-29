@@ -62,6 +62,9 @@ public class ResizableArraySet implements SetInterface {
 	
     @Override
     public boolean add(Point newValue) {
+	if(contains(newValue)) {
+	    return false;
+	}
 	if(numEntries < array.length) {
             array[numEntries] = newValue;
 	    numEntries++;
