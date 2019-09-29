@@ -119,7 +119,7 @@ public class ResizableArraySet implements SetInterface {
 	
     @Override
     public Point remove() {
-	if(numEntries > 0) {
+/*	if(numEntries > 0) {
 	    Point ret = array[numEntries - 1];
 	    array[numEntries - 1] = null;
 	    numEntries--;
@@ -129,7 +129,8 @@ public class ResizableArraySet implements SetInterface {
 	    }
 	return ret;
         }
-	return null;
+	return null; */
+	remove(array[numEntries - 1]);    
     }
 	
     /**
@@ -154,8 +155,8 @@ public class ResizableArraySet implements SetInterface {
 	
     @Override
     public boolean contains(Point anEntry) {
-	for(int i = 0; i < numEntries; i++) {
-	    if(array[i].equals(anEntry))
+	for(Point p: array) {
+	    if(p.equals(anEntry))
 		return true;
 	}
 	return false;
