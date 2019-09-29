@@ -224,7 +224,7 @@ public class ResizableArraySet implements SetInterface {
 	    ResizableArraySet other = (ResizableArraySet) anotherSet;
 	    ResizableArraySet temp = new ResizableArraySet(this.array.length + other.array.length);
 	    for(Point p: this.array) {
-		if(!other.contains(p) && p != null) {
+		if(p != null && !other.contains(p)) {
 		    temp.add(p);
 		}
 	    }
